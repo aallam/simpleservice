@@ -1,0 +1,18 @@
+# IntelliJ IDEA
+.idea
+*.iml
+*.ipl
+*.iws
+classes/
+idea-classes/
+coverage-error.log
+
+# Finder
+.DS_Store
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
