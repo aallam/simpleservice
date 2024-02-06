@@ -15,6 +15,7 @@ var (
 	version   = getEnv("SIMPLE_SERVICE_VERSION", "0.0.0")
 	healthMin = getEnvAsInt("HEALTH_MIN", 0)
 	healthMax = getEnvAsInt("HEALTH_MAX", 0)
+	startTime = time.Now()
 )
 
 func main() {
@@ -22,6 +23,7 @@ func main() {
 	http.HandleFunc("/health", healthHandler)
 	http.HandleFunc("/info", infoHandler)
 	http.HandleFunc("/env", envHandler)
+	http.HandleFunc("/status", statusHandler)
 
 	log.Printf("This is simple service in version v%s listening on port %s", version, port)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
@@ -68,6 +70,19 @@ func envHandler(w http.ResponseWriter, r *http.Request) {
 	response := map[string]interface{}{
 		"version": version,
 		"env":     os.Environ(),
+	}
+	writeJSONResponse(w, response)
+}
+
+// statusHandler handles `/status` resource
+func statusHandler(w http.ResponseWriter, r *http.Request) {
+	log.Printf("/status serving from %s has been invoked from %s\n", r.Host, r.RemoteAddr)
+	upTime := time.Since(startTime).Round(time.Second).String()
+	response := map[string]interface{}{
+		"version": version,
+		"host":    r.Host,
+		"upTime":  upTime,
+		"status":  "Operational",
 	}
 	writeJSONResponse(w, response)
 }

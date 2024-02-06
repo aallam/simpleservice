@@ -8,6 +8,7 @@ A simple and configurable service for testing container orchestration setups.
 - `/health` - returns a simple health check message
 - `/env` - returns the environment variables
 - `/info` - returns the service information
+- `/status` - returns the service status
 
 ## Prior Art
 
