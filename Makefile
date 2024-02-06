@@ -1,7 +1,7 @@
 # Makefile for building and pushing Docker images with multi-architecture support
 
 IMAGE_NAME := aallam/simpleservice
-VERSION := 0.1.0
+VERSION := 0.2.0
 BUILDER_NAME := builder
 
 # Default target
