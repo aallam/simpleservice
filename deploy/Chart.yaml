@@ -1,0 +1,6 @@
+apiVersion: v2
+name: simple-webservice
+description: A simple webservice deployment
+type: application
+version: 0.1.0
+appVersion: "0.2.0"

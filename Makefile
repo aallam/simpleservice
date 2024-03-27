@@ -17,7 +17,7 @@ bootstrap-builder:
 
 # Build the Docker image for local platform and tag it with latest and version
 build:
-	docker build -t simpleservice --build-arg=VERSION=$(VERSION) .
+	docker build -t simpleservice --build-arg=VERSION=$(VERSION) -f build/Dockerfile .
 
 # Build the Docker image for multiple platforms and tag it with latest and version
 publish:

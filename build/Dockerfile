@@ -1,7 +1,7 @@
 FROM golang:1.21.6-alpine AS builder
 WORKDIR /app
+COPY cmd .
 COPY go.mod .
-COPY cmd/ .
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
 
 FROM alpine:3.19.1
