@@ -1,0 +1,4 @@
+simpleservice:
+  image:
+    repository: aallam/simpleservice
+    tag: latest
