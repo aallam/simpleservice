@@ -1,6 +1,4 @@
 simpleservice:
-  app:
-    name: simpleservice
   image:
     repository: aallam/simpleservice
     tag: latest

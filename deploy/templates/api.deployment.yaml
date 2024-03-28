@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.simpleservice.app.name }}
+  name: simpleservice
   labels:
-    app: {{ .Values.simpleservice.app.name }}
+    app: simpleservice
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Values.simpleservice.app.name }}
+      app: simpleservice
   template:
     metadata:
-      name: {{ .Values.simpleservice.app.name }}
+      name: simpleservice
       labels:
-        app: {{ .Values.simpleservice.app.name }}
+        app: simpleservice
     spec:
       containers:
         - name: simpleservice
-          image: {{ .Values.simpleservice.image.repository}}:{{ .Values.simpleservice.image.tag }}
+          image: {{ .Values.simpleservice.image.repository }}:{{ .Values.simpleservice.image.tag }}
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
