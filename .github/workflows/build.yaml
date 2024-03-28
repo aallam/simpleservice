@@ -26,7 +26,7 @@ jobs:
 
       - name: Get short SHA
         id: short-sha
-        run: echo "SHORT_SHA=$(echo ${{ github.sha }} | cut -c 1-7)" >> $GITHUB_ENV
+        run: echo "SHORT_SHA=$(echo ${{ github.event.pull_request.head.sha }} | cut -c 1-7)" >> $GITHUB_ENV
 
       - name: Build and push Docker image
 
