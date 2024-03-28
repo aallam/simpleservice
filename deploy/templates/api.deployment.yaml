@@ -1,22 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: simpleservice
+  name: {{ .Values.simpleservice.app.name }}
   labels:
-    app: simpleservice
+    app: {{ .Values.simpleservice.app.name }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: simpleservice
+      app: {{ .Values.simpleservice.app.name }}
   template:
     metadata:
-      name: simpleservice
+      name: {{ .Values.simpleservice.app.name }}
       labels:
-        app: simpleservice
+        app: {{ .Values.simpleservice.app.name }}
     spec:
       containers:
-        - name: simple-webservice
+        - name: simpleservice
           image: {{ .Values.simpleservice.image.repository}}:{{ .Values.simpleservice.image.tag }}
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
       restartPolicy: Always
