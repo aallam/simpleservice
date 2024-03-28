@@ -25,11 +25,9 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Get short SHA
-        id: short-sha
         run: echo "SHORT_SHA=$(echo ${{ github.event.pull_request.head.sha }} | cut -c 1-7)" >> $GITHUB_ENV
 
       - name: Build and push Docker image
-
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -40,3 +38,4 @@ jobs:
             org.opencontainers.image.source=${{ github.repositoryUrl }}
             org.opencontainers.image.revision=${{ github.sha }}
             org.opencontainers.image.created=${{ github.event.pull_request.head.repo.pushed_at }}
+          platforms: linux/amd64,linux/arm64
