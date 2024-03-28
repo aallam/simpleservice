@@ -3,6 +3,7 @@
 IMAGE_NAME := aallam/simpleservice
 VERSION := 0.2.0
 BUILDER_NAME := builder
+PORT=8080
 
 # Default target
 all: publish
@@ -26,6 +27,11 @@ publish:
 		-t $(IMAGE_NAME):latest \
 		-t $(IMAGE_NAME):$(VERSION) \
 		--push .
+
+docker-run:
+	@docker run --rm -p $(PORT):$(PORT) -e PORT=$(PORT) simpleservice
+
+docker-boot: build docker-run
 
 # Clean up builder instance
 clean:
