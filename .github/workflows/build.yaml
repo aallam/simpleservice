@@ -30,7 +30,7 @@ jobs:
           context: .
           file: build/Dockerfile
           push: true
-          tags: aallam/simpleservice:pr-${{ github.event.pull_request.number }}
+          tags: aallam/simpleservice:pr-${{ github.event.pull_request.number }}-${{ github.sha }}
           labels: |
             org.opencontainers.image.source=${{ github.repositoryUrl }}
             org.opencontainers.image.revision=${{ github.sha }}
